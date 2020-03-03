@@ -17,12 +17,14 @@ A rasberry pi device needs a micro SD card (32GB is adviced).  Put the card in a
 
 Insert the SD card in your computer and open the Balena Etcher application, select the above mentioned image file, select the SD card (in my case the D: driver) and press the flash button
 
-![image-20200303094025179](C:\Users\sprengee\AppData\Roaming\Typora\typora-user-images\image-20200303094025179.png)
+![(C:\Users\sprengee\AppData\Roaming\Typora\typora-user-images\image-20200303094025179.png)
 
 The tool will write the image file to the SD card and verify it.  It is important that this step does not fail !
 
-## Step 3. Prepare the SD card for wifi connectivity / ssh access
+
+
+## Step![image-20200303094025179](image-20200303094025179.png) 3. Prepare the SD card for wifi connectivity / ssh access
 
 Reinsert the SD card in your laptop/PC, Open MobaXterm and start a local terminal
 
-![image-20200303094502340](C:\Users\sprengee\AppData\Roaming\Typora\typora-user-images\image-20200303094502340.png)
+![image-20200303094447463](image-20200303094447463.png)
