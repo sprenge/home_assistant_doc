@@ -54,3 +54,56 @@ network={
 Lookup your country code in https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes
 
 Fill in NETWORK-NAME and NETWORK-PASSWORD
+
+- NETWORK-PASSWORD is your wifi password
+- NETWORK-NAME can be found with for instance the android app SSID finder when your wifi router is in reach of your phone.
+
+Don't forget to save the file after you have made all the necessary changes.  Eject now the SD card safely from the laptop/PC.
+
+## Step 4.  Power up the rasberry PI
+
+Insert the micro SD card in the rasberry PI, put it in reach of your WIFI router and give the device some power.  Wait now a couple of minutes, take a coffee.
+
+## Step 5. SSH to the rasberry pi with your mobaxterm application
+
+Go to the local terminal and enter following command.
+
+```
+ssh pi@192.168.1.21
+```
+
+The IP can be looked with for instance the android app called fing.  This app will find the IP address of the raspberry PI if your phone is connected to the same WIFI network.
+
+Alternatively and if you are lucky (your router supports MDNS), you can use the hostname instead of the IP address.
+
+```
+ssh pi@raspberrypi.local
+```
+
+The default password is **raspberry**, change it to some safe password first.
+
+## Step 6.  Install some prerequisite software on your PI
+
+Copy/paste following text in your ssh session
+
+```
+sudo apt update && sudo apt dist-upgrade -y && sudo apt autoremove
+sudo -i
+apt-get install software-properties-common
+apt-get update
+apt-get install -y apparmor-utils apt-transport-https avahi-daemon ca-certificates curl dbus jq network-manager socat
+curl -fsSL get.docker.com | sh
+```
+
+```
+curl -sL "https://raw.githubusercontent.com/home-assistant/hassio-installer/master/hassio_install.sh" | bash -s -- -m raspberrypi3
+```
+
+```
+sudo docker run -d -p 9000:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+sudo reboot
+```
+
+Fire up now a browser and enter the IP address of the your PI on port 8123 (e.g. http://192.168.1.21:8123)
+
+Once the installation is completed, create an account in home asisstant.
