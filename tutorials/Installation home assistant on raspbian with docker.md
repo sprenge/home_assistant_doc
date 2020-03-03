@@ -21,9 +21,11 @@ Insert the SD card in your computer and open the Balena Etcher application, sele
 
 The tool will write the image file to the SD card and verify it.  It is important that this step does not fail !
 
+![image-20200303094025179](image-20200303094025179.png)
 
 
-## Step![image-20200303094025179](image-20200303094025179.png) 3. Prepare the SD card for wifi connectivity / ssh access
+
+## Step 3. Prepare the SD card for wifi connectivity / ssh access
 
 Reinsert the SD card in your laptop/PC, Open MobaXterm and start a local terminal
 
