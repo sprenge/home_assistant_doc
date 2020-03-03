@@ -17,8 +17,6 @@ A rasberry pi device needs a micro SD card (32GB is adviced).  Put the card in a
 
 Insert the SD card in your computer and open the Balena Etcher application, select the above mentioned image file, select the SD card (in my case the D: driver) and press the flash button
 
-![(C:\Users\sprengee\AppData\Roaming\Typora\typora-user-images\image-20200303094025179.png)
-
 The tool will write the image file to the SD card and verify it.  It is important that this step does not fail !
 
 ![image-20200303094025179](image-20200303094025179.png)
@@ -30,3 +28,29 @@ The tool will write the image file to the SD card and verify it.  It is importan
 Reinsert the SD card in your laptop/PC, Open MobaXterm and start a local terminal
 
 ![image-20200303094447463](image-20200303094447463.png)
+
+Execute the follow commands in the terminal :
+
+```
+cd /cygdrive/d
+touch ssh
+touch wpa_supplicant.conf
+edit wpa_supplicant.conf
+```
+
+Forsee the following text in the wpa_supplicant.conf file :
+
+```
+country=US
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+    ssid="NETWORK-NAME"
+    psk="NETWORK-PASSWORD"
+}
+```
+
+Lookup your country code in https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes
+
+Fill in NETWORK-NAME and NETWORK-PASSWORD
