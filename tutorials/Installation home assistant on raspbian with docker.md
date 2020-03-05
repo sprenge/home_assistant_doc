@@ -1,6 +1,8 @@
-# Installation home assistant on raspbian with docker
+# Installation home assistant on raspbian with docker (raspberry PI)
 
-The assumption is that the installation is done from PC/laptop without windows installed.
+The assumption is that the installation is done from PC/laptop with windows (10) installed.
+
+> Note : This tutorial assumes that you connect your raspberry PI with a fixed ethernet cable to your home network.  Wifi connections will be tackled in later tutorials.
 
 ## Step 1 : hardware preparation steps
 
@@ -21,9 +23,10 @@ The tool will write the image file to the SD card and verify it.  It is importan
 
 ![image-20200303094025179](image-20200303094025179.png)
 
+> Note : Balena Etcher sometimes fails (sumcheck error):  See following [link](https://superuser.com/questions/1199823/how-to-prevent-creation-of-system-volume-information-folder-in-windows-10-for/1199824#1199824) how to avoid this.
+>
 
-
-## Step 3. Prepare the SD card for wifi connectivity / ssh access
+## Step 3. Prepare the SD card for ssh access
 
 Reinsert the SD card in your laptop/PC, Open MobaXterm and start a local terminal
 
@@ -34,55 +37,43 @@ Execute the follow commands in the terminal :
 ```
 cd /cygdrive/d
 touch ssh
-touch wpa_supplicant.conf
-edit wpa_supplicant.conf
 ```
 
-Forsee the following text in the wpa_supplicant.conf file :
 
-```
-country=US
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
-
-network={
-    ssid="NETWORK-NAME"
-    psk="NETWORK-PASSWORD"
-}
-```
-
-Lookup your country code in https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes
-
-Fill in NETWORK-NAME and NETWORK-PASSWORD
-
-- NETWORK-PASSWORD is your wifi password
-- NETWORK-NAME can be found with for instance the android app SSID finder when your wifi router is in reach of your phone.
-
-Don't forget to save the file after you have made all the necessary changes.  Eject now the SD card safely from the laptop/PC.
 
 ## Step 4.  Power up the rasberry PI
 
-Insert the micro SD card in the rasberry PI, put it in reach of your WIFI router and give the device some power.  Wait now a couple of minutes, take a coffee.
+Insert the micro SD card in the rasberry PI, connect the device using a fixed ether cable to your home router and give the device some power.  Wait now a couple of minutes, take a coffee.
 
 ## Step 5. SSH to the rasberry pi with your mobaxterm application
 
-Go to the local terminal and enter following command.
+Go to the local terminal and enter following command (The default password is **raspberry**).
 
 ```
 ssh pi@192.168.1.21
-```
-
-The IP can be looked with for instance the android app called fing.  This app will find the IP address of the raspberry PI if your phone is connected to the same WIFI network.
-
-Alternatively and if you are lucky (your router supports MDNS), you can use the hostname instead of the IP address.
-
-```
+# or
 ssh pi@raspberrypi.local
 ```
 
-The default password is **raspberry**, change it to some safe password first.
+The IP can be looked with for instance the android app called fing.  This app will find the IP address of the raspberry PI if your phone is connected to the same home network.  Alternatively and if you are lucky (your router supports MDNS), you can use the hostname instead of the IP address.
+
+```
+sudo raspi-config
+```
+
+You will see a menu, change the following items :
+
+- Under number 1, change the password to a safe one
+- Under number 4, change language and regional settings
+- Under number 7, advanced options, Execute A1 and finished (reboot if asked for)
+
+
 
 ## Step 6.  Install some prerequisite software on your PI
+
+Ssh again into the device and enter the commands below :
+
+
 
 Copy/paste following text in your ssh session
 
