@@ -93,6 +93,7 @@ curl -sL "https://raw.githubusercontent.com/home-assistant/hassio-installer/mast
 ```
 sudo docker run -d -p 9000:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
 sudo reboot
+# can also be https://raw.githubusercontent.com/home-assistant/supervised-installer/master/installer.sh --> changed afterwards ??
 ```
 
 Fire up now a browser and enter the IP address of the your PI on port 8123 (e.g. http://192.168.1.21:8123)
